@@ -22,7 +22,7 @@ hide_default_format = """
                 padding-bottom: 1px;
                 padding-left: 40px;
                 padding-right: 40px;
-                padding-top: 22px;
+                padding-top: 32px;
             }
             [data-testid="stSidebar"] {
                 padding-left: 18px;
@@ -60,15 +60,21 @@ years = st.sidebar.select_slider(
 
 # dashboard title styling variables
 dash_title1_color = '#FFFFFF'
+dash_title_font_size = '17'
 dash_title1_font_weight = '900'
+line_height1 = '12'
 
 dash_title2_color = '#022B3A'
 dash_title2_font_weight = '800'
+line_height2 = '0'
 
 if years[0] != years[1]:
-    st.markdown(f"<h3 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends:<br> <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} - {years[1]}</span></h3>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px; display:block;'>Forsyth County Housing Trends:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title2_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title2_font_weight}; line-height:{line_height2}px; display:block;'>{years[0]} - {years[1]}</p>", unsafe_allow_html=True)
 else:
-    st.markdown(f"<h2 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends | <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} only</span></h2>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title1_color}; font-weight:{dash_title1_font_weight};'>Forsyth County Housing Trends: <span style='color:{dash_title2_color}; font-weight:{dash_title2_font_weight}'>{years[0]} only</span></p>", unsafe_allow_html=True)
+
+st.markdown("<p style='font-size:10px; color:#022B3A; font-style:italic;'>Expand sidebar to filter housing data.", unsafe_allow_html=True)
 
 # # square footage slider
 # sq_footage = st.sidebar.select_slider(
@@ -552,9 +558,9 @@ subcol2.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_lab
 
 # delta KPI, resting under the 4 KPIs above
 if years[0] != years[1]:
-    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center; white-space:nowrap;'>Change in median price / SF from {years[0]} to {years[1]}: </span><span style='color:{KPI_value_font_color}; font-size: 25px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center; line-height:20px'>{YoY_delta} </span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center;'>Change in median price / SF from {years[0]} to {years[1]}: </span><span style='color:{KPI_value_font_color}; font-size: 25px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center; line-height:20px'>{YoY_delta} </span>", unsafe_allow_html=True)
 else:
-    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center;'>No year over year change.</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center;'>No year over year change.</span>", unsafe_allow_html=True)
     
 
 # map notes
