@@ -462,7 +462,8 @@ def charter():
             tickfont_color = '#022B3A',
             tickfont_size = 13,
             tickformat = '$.0f',
-            showgrid = False
+            showgrid = False,
+            fixedrange = True
             ),
         xaxis=dict(
             linecolor = "#022B3A",
@@ -472,7 +473,8 @@ def charter():
             tickangle=90,
             tickfont_size = 13,
             tickformat = '%b %Y',
-            dtick = 'M3'
+            dtick = 'M3',
+            fixedrange = True
             ),
         height=460,
         hovermode="x unified")
