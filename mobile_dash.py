@@ -77,13 +77,6 @@ else:
 st.markdown("<p style='font-size:13px; color:#022B3A; font-style:italic; line-height:5px; display:in-line; text-align:center;'>Expand sidebar to filter housing data.", unsafe_allow_html=True)
 st.write("")
 
-# # square footage slider
-# sq_footage = st.sidebar.select_slider(
-#     'Home size (SF):',
-#     options=['<1000',1000,2500,5000,'>5000'],
-#     value=('<1000','>5000'),
-#     help="Filter sales by square footage of home as reported by the county tax assessor's office."
-# )
 
 # construction vintage
 year_built = st.sidebar.select_slider(
@@ -443,8 +436,6 @@ def charter():
         chart_title_text = "Countywide Median Price / SF"
     elif len(sub_geo) == 1:
         chart_title_text = f"{sub_geo[0]} Median Price / SF"
-    elif len(sub_geo) == 2:
-        chart_title_text = f"{sub_geo[0]} & {sub_geo[1]} Median Price / SF"
     else:
         chart_title_text = f"Median Price / SF For Selected Regions"
 
