@@ -480,7 +480,7 @@ def charter():
             tickangle=90,
             tickfont_size = 13,
             tickformat = '%b %Y',
-            # dtick = 'M6',
+            dtick = 'M4',
             fixedrange = True
             ),
         height=460,
