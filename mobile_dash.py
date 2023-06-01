@@ -20,8 +20,8 @@ hide_default_format = """
             #MainMenu, footer {visibility: hidden;}
             section.main > div:has(~ footer ) {
                 padding-bottom: 1px;
-                padding-left: 50px;
-                padding-right: 50px;
+                padding-left: 60px;
+                padding-right: 60px;
                 padding-top: 22px;
             }
             [data-testid="stSidebar"] {
