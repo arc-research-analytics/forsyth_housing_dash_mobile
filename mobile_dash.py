@@ -9,9 +9,8 @@ from datetime import date
 # customize
 st.set_page_config(
     page_title="Housing Dashboard", 
-    layout="wide",
     page_icon=":house:",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
     )
 
 # the custom css lives here:
@@ -21,9 +20,9 @@ hide_default_format = """
             #MainMenu, footer {visibility: hidden;}
             section.main > div:has(~ footer ) {
                 padding-bottom: 1px;
-                padding-left: 35px;
-                padding-right: 35px;
-                padding-top: 12px;
+                padding-left: 50px;
+                padding-right: 50px;
+                padding-top: 22px;
             }
             [data-testid="stSidebar"] {
                 padding-left: 18px;
@@ -67,7 +66,7 @@ dash_title2_color = '#022B3A'
 dash_title2_font_weight = '800'
 
 if years[0] != years[1]:
-    st.markdown(f"<h2 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends | <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} - {years[1]}</span></h2>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends | <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} - {years[1]}</span></h3>", unsafe_allow_html=True)
 else:
     st.markdown(f"<h2 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends | <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} only</span></h2>", unsafe_allow_html=True)
 
@@ -211,6 +210,12 @@ custom_colors = [
 # convert the above hex list to RGB values
 custom_colors = [tuple(int(h.lstrip('#')[i:i+2], 16) for i in (0, 2, 4)) for h in custom_colors]
 
+# map variables
+map_lat = 34.207054643497315
+map_long = -84.10535919531371
+map_height = 400
+map_zoom = 9.4 # higher numeric value = 'zooming out'
+
 def mapper_2D():
 
     # tabular data
@@ -244,14 +249,14 @@ def mapper_2D():
 
     # create map intitial state
     initial_view_state = pdk.ViewState(
-        latitude=34.207054643497315,
-        longitude=-84.10535919531371, 
-        zoom=9.2, 
+        latitude=map_lat,
+        longitude=map_long, 
+        zoom=map_zoom, 
         max_zoom=15, 
         min_zoom=8,
         pitch=0,
         bearing=0,
-        height=565
+        height=map_height
         )
     
     geojson = pdk.Layer(
@@ -321,14 +326,14 @@ def mapper_3D():
 
     # set initial view state
     initial_view_state = pdk.ViewState(
-        latitude=34.307054643497315,
-        longitude=-84.10535919531371, 
-        zoom=9.2, 
+        latitude=map_lat,
+        longitude=map_long, 
+        zoom=map_zoom, 
         max_zoom=15, 
         min_zoom=8,
         pitch=45,
         bearing=0,
-        height=565
+        height=map_height
         )
     
     # create geojson layer
@@ -480,18 +485,28 @@ def charter():
 
     return fig
 
-# define columns
-col1, col2, col3 = st.columns([
-    2.5, # map column
-    0.2, # spacer column
-    3 # KPI / chart column
-    ]) 
+# # define columns
+# col1, col2 = st.columns(2) 
 
-
+# map
 if map_view == '2D':
-    col1.pydeck_chart(mapper_2D(), use_container_width=True)
+    st.pydeck_chart(mapper_2D(), use_container_width=True)
 else:
-    col1.pydeck_chart(mapper_3D(), use_container_width=True)
+    st.pydeck_chart(mapper_3D(), use_container_width=True)
+
+# map notes
+# put expander explanatory text
+if map_view == '2D':
+    expander = st.expander("Notes")
+    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
+else:
+    st.markdown("<span style='color:#022B3A'><b>Shift + click</b> in 3D view to rotate and change map angle. Census tract 'height' represents total sales.</span>", unsafe_allow_html=True)
+    expander = st.expander("Notes")
+    expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
+
+# chart
+st.plotly_chart(charter(), use_container_width=True, config = {'displayModeBar': False}, help='test')
+
 
 # kpi values
 total_sales = '{:,.0f}'.format(filter_data()[1]['unique_ID'].sum())
@@ -514,47 +529,31 @@ KPI_line_height = '25' # vertical spacing between the KPI label and value
 
 
 # KPI tyme
-with col3:
-    subcol1, subcol2, subcol3, subcol4 = st.columns([1, 1, 1, 1])
+subcol1, subcol2 = st.columns([1, 1])
 
-    # first metric - "Total sales"
-    subcol1.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Total home sales</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{total_sales}</span>", unsafe_allow_html=True)
+# first metric - "Total sales"
+subcol1.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Total home sales</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{total_sales}</span>", unsafe_allow_html=True)
+
+# second metric - "Median price"
+subcol2.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Median sale price</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{median_price}</span>", unsafe_allow_html=True)
+
+# third metric - "Median vintage"
+subcol1.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Median vintage</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{med_vintage}</span>", unsafe_allow_html=True)
+
+# fourth metric - "Median SF"
+subcol2.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Median size (SF)</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{med_SF}</span>", unsafe_allow_html=True)
+
+# delta KPI, resting under the 4 KPIs above
+if years[0] != years[1]:
+    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center; white-space:nowrap;'>Change in median price / SF from {years[0]} to {years[1]}: </span><span style='color:{KPI_value_font_color}; font-size: 25px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center; line-height:20px'>{YoY_delta} </span>", unsafe_allow_html=True)
+else:
+    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center;'>No year over year change.</span>", unsafe_allow_html=True)
     
-    # second metric - "Median price"
-    subcol2.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Median sale price</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{median_price}</span>", unsafe_allow_html=True)
 
-    # third metric - "Median vintage"
-    subcol3.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Median vintage</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{med_vintage}</span>", unsafe_allow_html=True)
-    
-    # fourth metric - "Median SF"
-    subcol4.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_label_font_size}px; font-weight:{KPI_label_font_weight}'>Median size (SF)</span><br><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{med_SF}</span>", unsafe_allow_html=True)
-
-    # delta KPI, resting under the 4 KPIs above
-    if years[0] != years[1]:
-        col3.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center; white-space:nowrap;'>Change in median price / SF from {years[0]} to {years[1]}: </span><span style='color:{KPI_value_font_color}; font-size: 25px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center; line-height:20px'>{YoY_delta} </span>", unsafe_allow_html=True)
-    else:
-        col3.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center;'>No year over year change.</span>", unsafe_allow_html=True)
-    
-
-
-# draw the plotly line chart
-col3.plotly_chart(charter(), use_container_width=True, config = {'displayModeBar': False}, help='test')
 
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
-col3.write("")
-with col3:
-    subcol1, subcol2, subcol3, subcol4, subcol5 = st.columns([1, 1, 1, 1, 1])
-    subcol4.write("Powered by")
-    subcol5.image(im, width=80)
-
-# put expander explanatory text
-if map_view == '2D':
-    with col1:
-        expander = st.expander("Notes")
-        expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
-else:
-    with col1:
-        col1.markdown("<span style='color:#022B3A'><b>Shift + click</b> in 3D view to rotate and change map angle. Census tract 'height' represents total sales.</span>", unsafe_allow_html=True)
-        expander = st.expander("Notes")
-        expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
+st.write("")
+subcol1, subcol2, subcol3, subcol4, subcol5 = st.columns([1, 1, 1, 1, 1])
+subcol4.write("Powered by")
+subcol5.image(im, width=80)
