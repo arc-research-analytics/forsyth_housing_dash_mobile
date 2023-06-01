@@ -558,7 +558,7 @@ st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}p
 
 # delta KPI, resting under the 4 KPIs above
 if years[0] != years[1]:
-    st.markdown(f"<p style='color:{KPI_label_font_color}; font-size: {KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Change in median price / SF ({years[0]} - {years[1]}): <span style='color:{KPI_value_font_color};'>{YoY_delta}</span></p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{KPI_label_font_color}; font-size: {KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Change in median price / SF <br>({years[0]} - {years[1]}): <span style='color:{KPI_value_font_color};'>{YoY_delta}</span></p>", unsafe_allow_html=True)
 else:
     st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: {KPI_font_size}px; font-weight:{KPI_font_weight}; display:flex; justify-content:center;'>No year over year change.</span>", unsafe_allow_html=True)
     
