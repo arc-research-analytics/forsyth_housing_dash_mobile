@@ -361,8 +361,8 @@ def mapper_3D():
     joined_df,
     pickable=True,
     autoHighlight=True,
-    highlight_color = [255, 255, 255, 90],
-    opacity=0.5,
+    highlight_color = [255, 137, 102, 100],
+    opacity=0.7,
     stroked=False,
     filled=True,
     wireframe=False,
@@ -435,11 +435,11 @@ def charter():
     chart_subtitle_font_weight = '650'
 
     if sub_geo == "":
-        chart_title_text = "Countywide Median Price / SF"
+        chart_title_text = "Countywide median price / SF per month"
     elif len(sub_geo) == 1:
-        chart_title_text = f"{sub_geo[0]} Median Price / SF"
+        chart_title_text = f"{sub_geo[0]} median price / SF per month"
     else:
-        chart_title_text = f"Median Price / SF For Selected Regions"
+        chart_title_text = f"Median price / SF per month for selected regions"
 
 
     # update the fig
@@ -504,8 +504,13 @@ def charter():
 
     return fig
 
+if sub_geo == "":
+    st.markdown(f"<p style='color:#FFFFFF; font-size:17px; font-weight:800; line-height:15px; display:in-line; text-align:left;'>Countywide median price / SF</p>", unsafe_allow_html=True)
+elif len(sub_geo) == 1:
+    st.markdown(f"<p style='color:#FFFFFF; font-size:17px; font-weight:800; line-height:15px; display:in-line; text-align:left;'>{sub_geo[0]} sales price / SF</p>", unsafe_allow_html=True)
+else:
+    st.markdown(f"<p style='color:#FFFFFF; font-size:17px; font-weight:800; line-height:15px; display:in-line; text-align:left;'>Sales price / SF for selected regions</p>", unsafe_allow_html=True)
 
-st.markdown(f"<p style='color:#FFFFFF; font-size:17px; font-weight:800; line-height:15px; display:in-line; text-align:left;'>Sales price / SF</p>", unsafe_allow_html=True)
 
 # map
 if map_view == '2D':
