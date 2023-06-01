@@ -29,6 +29,10 @@ hide_default_format = """
                 padding-right: 18px;
                 padding-top: 0px;
                 }
+            [data-testid="stMarkdownContainer"] {
+                display: flex;
+                justify-content: center;
+                }
             span[data-baseweb="tag"] {
                 background-color: #022B3A 
                 }
@@ -558,7 +562,7 @@ subcol2.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_lab
 
 # delta KPI, resting under the 4 KPIs above
 if years[0] != years[1]:
-    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center;'>Change in median price / SF from {years[0]} to {years[1]}: </span><span style='color:{KPI_value_font_color}; font-size: 25px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center; line-height:20px'>{YoY_delta} </span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center;'>Change in median price / SF ({years[0]} - {years[1]}): </span><span style='color:{KPI_value_font_color}; font-size: 25px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center; line-height:20px'>{YoY_delta} </span>", unsafe_allow_html=True)
 else:
     st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display:flex; justify-content:center;'>No year over year change.</span>", unsafe_allow_html=True)
     
@@ -575,6 +579,6 @@ else:
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
 st.write("")
-subcol1, subcol2, subcol3, subcol4, subcol5 = st.columns([1, 1, 1, 1, 1])
-subcol4.write("Powered by")
-subcol5.image(im, width=80)
+subcol1, subcol2, subcol3 = st.columns([1, 1, 1])
+subcol2.write("Powered by:")
+subcol2.image(im, width=100)
