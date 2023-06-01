@@ -74,7 +74,7 @@ if years[0] != years[1]:
 else:
     st.markdown(f"<p style='color:{dash_title1_color}; font-weight:{dash_title1_font_weight};'>Forsyth County Housing Trends: <span style='color:{dash_title2_color}; font-weight:{dash_title2_font_weight}'>{years[0]} only</span></p>", unsafe_allow_html=True)
 
-st.markdown("<p style='font-size:13px; color:#022B3A; font-style:italic; line-height:5px; display:in-line; text-align:center;'>Expand sidebar left to filter housing data.", unsafe_allow_html=True)
+st.markdown("<p style='font-size:13px; color:#022B3A; font-style:italic; line-height:5px; display:in-line; text-align:center;'>Expand lefthand sidebar to filter housing data.", unsafe_allow_html=True)
 st.write("")
 
 
