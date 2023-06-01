@@ -17,7 +17,7 @@ st.set_page_config(
 hide_default_format = """
         <style>
             .reportview-container .main footer {visibility: hidden;}    
-            #MainMenu, footer {visibility: hidden;}
+            #MainMenu, footer, header {visibility: hidden;}
             section.main > div:has(~ footer ) {
                 padding-bottom: 1px;
                 padding-left: 40px;
@@ -60,7 +60,7 @@ years = st.sidebar.select_slider(
 
 # dashboard title styling variables
 dash_title1_color = '#FFFFFF'
-dash_title_font_size = '17'
+dash_title_font_size = '18'
 dash_title1_font_weight = '900'
 line_height1 = '12'
 
