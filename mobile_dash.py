@@ -147,6 +147,7 @@ st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.markdown(f"<p style='text-align:center;'>Updated {time_stamp}</p>", unsafe_allow_html=True)
+
 # sidebar variables ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 @st.cache_data
 def load_tab_data():
@@ -229,7 +230,7 @@ custom_colors = [tuple(int(h.lstrip('#')[i:i+2], 16) for i in (0, 2, 4)) for h i
 # map variables
 map_lat = 34.207054643497315
 map_long = -84.10535919531371
-map_height = 400
+map_height = 350
 map_zoom = 8.8 # higher numeric value = 'zooming in'
 
 def mapper_2D():
@@ -503,24 +504,12 @@ def charter():
 
     return fig
 
-# # define columns
-# col1, col2 = st.columns(2) 
 
 # map
 if map_view == '2D':
     st.pydeck_chart(mapper_2D(), use_container_width=True)
 else:
     st.pydeck_chart(mapper_3D(), use_container_width=True)
-
-# map notes
-# put expander explanatory text
-if map_view == '2D':
-    expander = st.expander("Notes")
-    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
-else:
-    st.markdown("<span style='color:#022B3A'><b>Shift + click</b> in 3D view to rotate and change map angle. Census tract 'height' represents total sales.</span>", unsafe_allow_html=True)
-    expander = st.expander("Notes")
-    expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
 
 # chart
 st.plotly_chart(charter(), use_container_width=True, config = {'displayModeBar': False}, help='test')
@@ -568,6 +557,14 @@ else:
     st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: 17px; font-weight:{KPI_label_font_weight}; display: flex; justify-content: center;'>No year over year change.</span>", unsafe_allow_html=True)
     
 
+# map notes
+if map_view == '2D':
+    expander = st.expander("Notes")
+    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
+else:
+    st.markdown("<span style='color:#022B3A'><b>Shift + click</b> in 3D view to rotate and change map angle. Census tract 'height' represents total sales.</span>", unsafe_allow_html=True)
+    expander = st.expander("Notes")
+    expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
 
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
