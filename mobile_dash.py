@@ -435,11 +435,11 @@ def charter():
     chart_subtitle_font_weight = '650'
 
     if sub_geo == "":
-        chart_title_text = "Countywide median price / SF per month"
+        chart_title_text = "Countywide home prices per month"
     elif len(sub_geo) == 1:
-        chart_title_text = f"{sub_geo[0]} median price / SF per month"
+        chart_title_text = f"{sub_geo[0]} home prices per month"
     else:
-        chart_title_text = f"Median price / SF per month for selected regions"
+        chart_title_text = f"Prices per month for selected regions"
 
 
     # update the fig
