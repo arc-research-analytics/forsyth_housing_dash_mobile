@@ -65,16 +65,17 @@ dash_title1_font_weight = '900'
 line_height1 = '12'
 
 dash_title2_color = '#022B3A'
-dash_title2_font_weight = '800'
+dash_title2_font_weight = '700'
 line_height2 = '0'
 
 if years[0] != years[1]:
-    st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px;'>Forsyth County Housing Trends:</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:{dash_title2_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title2_font_weight}; line-height:{line_height2}px;'>{years[0]} - {years[1]}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px; display:in-line; text-align:center;'>Forsyth County Housing Trends:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title2_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title2_font_weight}; line-height:{line_height2}px; display:in-line; text-align:center;'>{years[0]} - {years[1]}</p>", unsafe_allow_html=True)
 else:
     st.markdown(f"<p style='color:{dash_title1_color}; font-weight:{dash_title1_font_weight};'>Forsyth County Housing Trends: <span style='color:{dash_title2_color}; font-weight:{dash_title2_font_weight}'>{years[0]} only</span></p>", unsafe_allow_html=True)
 
-st.markdown("<p style='font-size:13px; color:#022B3A; font-style:italic; line-height:5px;'>Expand sidebar to filter housing data.", unsafe_allow_html=True)
+st.markdown("<p style='font-size:13px; color:#022B3A; font-style:italic; line-height:5px; display:in-line; text-align:center;'>Expand sidebar to filter housing data.", unsafe_allow_html=True)
+st.write("")
 
 # # square footage slider
 # sq_footage = st.sidebar.select_slider(
@@ -511,7 +512,8 @@ def charter():
     return fig
 
 
-st.markdown("<p style=text-align:left;>'This is a test</p>", unsafe_allow_html=True)
+st.markdown(f"<p style='color:#FFFFFF; font-size:17px; font-weight:800; line-height:15px; display:in-line; text-align:left;'>Sales price / SF</p>", unsafe_allow_html=True)
+
 # map
 if map_view == '2D':
     st.pydeck_chart(mapper_2D(), use_container_width=True)
