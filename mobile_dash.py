@@ -140,7 +140,13 @@ st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
-st.sidebar.write(f"Updated {time_stamp}")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.markdown(f"<p style='text-align:center;'>Updated {time_stamp}</p>", unsafe_allow_html=True)
 # sidebar variables ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 @st.cache_data
 def load_tab_data():
