@@ -29,10 +29,6 @@ hide_default_format = """
                 padding-right: 18px;
                 padding-top: 0px;
                 }
-            [data-testid="stMarkdownContainer"] {
-                display: flex;
-                justify-content: center;
-                }
             span[data-baseweb="tag"] {
                 background-color: #022B3A 
                 }
@@ -515,6 +511,7 @@ def charter():
     return fig
 
 
+st.markdown("<p style=text-align:left;>'This is a test</p>", unsafe_allow_html=True)
 # map
 if map_view == '2D':
     st.pydeck_chart(mapper_2D(), use_container_width=True)
@@ -534,13 +531,11 @@ med_SF = '{:,.0f}'.format(filter_data()[2]['Square Ft'].median())
 YoY_delta = '{0:.1%}'.format((filter_data()[4]['price_sf'].median() - filter_data()[3]['price_sf'].median()) / filter_data()[3]['price_sf'].median())
 
 # kpi styles
-KPI_label_font_size = '18' 
+KPI_font_size = '20' 
+KPI_font_weight = '700' # thickness of the bold
 KPI_label_font_color = '#FFFFFF'
-KPI_label_font_weight = '700' # thickness of the bold
 
-KPI_value_font_size = '22'
 KPI_value_font_color = '#022B3A'
-KPI_value_font_weight = '800' # thickness of the bold
 
 KPI_line_height = '25' # vertical spacing between the KPI label and value
 
@@ -549,22 +544,23 @@ KPI_line_height = '25' # vertical spacing between the KPI label and value
 # subcol1, subcol2 = st.columns([1, 1])
 
 # first metric - "Total sales"
-st.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; justify-content:center;'>Total home sales: </span><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{total_sales}</span>", unsafe_allow_html=True)
+st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Total home sales: <span style='color:{KPI_value_font_color};'>{total_sales}</span></p>", unsafe_allow_html=True)
+
 
 # second metric - "Median price"
-st.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; justify-content:center;'>Median sale price: </span><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{median_price}</span>", unsafe_allow_html=True)
+st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Median sale price: <span style='color:{KPI_value_font_color};'>{median_price}</span></p>", unsafe_allow_html=True)
 
 # third metric - "Median vintage"
-st.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; justify-content:center;'>Median vintage: </span><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{med_vintage}</span>", unsafe_allow_html=True)
+st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Median vintage: <span style='color:{KPI_value_font_color};'>{med_vintage}</span></p>", unsafe_allow_html=True)
 
 # fourth metric - "Median SF"
-st.markdown(f"<span style='color:{KPI_label_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; justify-content:center;'>Median size (SF): </span><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_value_font_weight}; line-height: {KPI_line_height}px'>{med_SF}</span>", unsafe_allow_html=True)
+st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Median size (SF): <span style='color:{KPI_value_font_color};'>{med_SF}</span></p>", unsafe_allow_html=True)
 
 # delta KPI, resting under the 4 KPIs above
 if years[0] != years[1]:
-    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: {KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; justify-content:center;'>Change in median price / SF ({years[0]} - {years[1]}): </span><span style='color:{KPI_value_font_color}; font-size:{KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; line-height:{KPI_line_height}px'>{YoY_delta}</span>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{KPI_label_font_color}; font-size: {KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Change in median price / SF ({years[0]} - {years[1]}): <span style='color:{KPI_value_font_color};'>{YoY_delta}</span></p>", unsafe_allow_html=True)
 else:
-    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: {KPI_value_font_size}px; font-weight:{KPI_label_font_weight}; justify-content:center;'>No year over year change.</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color:{KPI_label_font_color}; font-size: {KPI_font_size}px; font-weight:{KPI_font_weight}; display:flex; justify-content:center;'>No year over year change.</span>", unsafe_allow_html=True)
     
 
 # map notes
@@ -579,6 +575,7 @@ else:
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
 st.write("")
-subcol1, subcol2, subcol3 = st.columns([1, 1, 1])
-subcol2.write("Powered by:")
-subcol2.image(im, width=100)
+# subcol1, subcol2, subcol3 = st.columns([1, 1, 1])
+st.write(f"Powered by:")
+st.image(im, width=100)
+
