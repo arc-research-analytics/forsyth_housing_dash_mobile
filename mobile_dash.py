@@ -230,7 +230,7 @@ custom_colors = [tuple(int(h.lstrip('#')[i:i+2], 16) for i in (0, 2, 4)) for h i
 map_lat = 34.207054643497315
 map_long = -84.10535919531371
 map_height = 400
-map_zoom = 9.7 # higher numeric value = 'zooming out'
+map_zoom = 8.8 # higher numeric value = 'zooming in'
 
 def mapper_2D():
 
