@@ -228,10 +228,12 @@ custom_colors = [
 custom_colors = [tuple(int(h.lstrip('#')[i:i+2], 16) for i in (0, 2, 4)) for h in custom_colors]
 
 # map variables
-map_lat = 34.207054643497315
+map_lat_2D = 34.207054643497315
+map_lat_3D = 34.407054643497315
 map_long = -84.10535919531371
 map_height = 350
-map_zoom = 8.8 # higher numeric value = 'zooming in'
+map_zoom_2D = 8.8 # higher numeric value = 'zooming in'
+map_zoom_3D = 8.2 # higher numeric value = 'zooming in'
 
 def mapper_2D():
 
@@ -266,9 +268,9 @@ def mapper_2D():
 
     # create map intitial state
     initial_view_state = pdk.ViewState(
-        latitude=map_lat,
+        latitude=map_lat_2D,
         longitude=map_long, 
-        zoom=map_zoom, 
+        zoom=map_zoom_2D, 
         max_zoom=15, 
         min_zoom=8,
         pitch=0,
@@ -343,9 +345,9 @@ def mapper_3D():
 
     # set initial view state
     initial_view_state = pdk.ViewState(
-        latitude=map_lat,
+        latitude=map_lat_3D,
         longitude=map_long, 
-        zoom=map_zoom, 
+        zoom=map_zoom_3D, 
         max_zoom=15, 
         min_zoom=8,
         pitch=45,
@@ -510,6 +512,7 @@ if map_view == '2D':
     st.pydeck_chart(mapper_2D(), use_container_width=True)
 else:
     st.pydeck_chart(mapper_3D(), use_container_width=True)
+    st.markdown("<span style='color:#022B3A'>Census tract 'height' represents total sales; darker shading represents greater median sales price / SF.</span>", unsafe_allow_html=True)
 
 # chart
 st.plotly_chart(charter(), use_container_width=True, config = {'displayModeBar': False}, help='test')
@@ -559,11 +562,10 @@ else:
 # map notes
 if map_view == '2D':
     expander = st.expander("Notes")
-    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
+    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts on map represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023 and is assumed to be accurate and reliable.</span>", unsafe_allow_html=True)
 else:
-    st.markdown("<span style='color:#022B3A'><b>Shift + click</b> in 3D view to rotate and change map angle. Census tract 'height' represents total sales.</span>", unsafe_allow_html=True)
     expander = st.expander("Notes")
-    expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023.</span>", unsafe_allow_html=True)
+    expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts on map represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023 and is assumed to be accurate and reliable.</span>", unsafe_allow_html=True)
 
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
