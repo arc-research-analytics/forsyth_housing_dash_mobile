@@ -4,7 +4,7 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 import pydeck as pdk
-from datetime import date
+import datetime
 
 # customize
 st.set_page_config(
@@ -66,7 +66,7 @@ dash_title2_color = '#022B3A'
 dash_title2_font_weight = '800'
 
 if years[0] != years[1]:
-    st.markdown(f"<h3 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends | <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} - {years[1]}</span></h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends:<br> <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} - {years[1]}</span></h3>", unsafe_allow_html=True)
 else:
     st.markdown(f"<h2 style='color:{dash_title1_color}; font-weight: {dash_title1_font_weight};'>Forsyth County Housing Trends | <span style='color:{dash_title2_color}; font-weight: {dash_title2_font_weight}'>{years[0]} only</span></h2>", unsafe_allow_html=True)
 
@@ -131,6 +131,16 @@ base_map_dict = {
     'Gray':'light'
 }
 
+# create more space at the bottom of the sidebar for better scrolling
+time_stamp = datetime.datetime.now().date()
+
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write("")
+st.sidebar.write(f"Updated {time_stamp}")
 # sidebar variables ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 @st.cache_data
 def load_tab_data():
