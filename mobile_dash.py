@@ -69,12 +69,12 @@ dash_title2_font_weight = '800'
 line_height2 = '0'
 
 if years[0] != years[1]:
-    st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px; display:block;'>Forsyth County Housing Trends:</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:{dash_title2_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title2_font_weight}; line-height:{line_height2}px; display:block;'>{years[0]} - {years[1]}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px;'>Forsyth County Housing Trends:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:{dash_title2_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title2_font_weight}; line-height:{line_height2}px;'>{years[0]} - {years[1]}</p>", unsafe_allow_html=True)
 else:
     st.markdown(f"<p style='color:{dash_title1_color}; font-weight:{dash_title1_font_weight};'>Forsyth County Housing Trends: <span style='color:{dash_title2_color}; font-weight:{dash_title2_font_weight}'>{years[0]} only</span></p>", unsafe_allow_html=True)
 
-st.markdown("<p style='font-size:10px; color:#022B3A; font-style:italic;'>Expand sidebar to filter housing data.", unsafe_allow_html=True)
+st.markdown("<p style='font-size:12px; color:#022B3A; font-style:italic; line-height:5px;'>Expand sidebar to filter housing data.", unsafe_allow_html=True)
 
 # # square footage slider
 # sq_footage = st.sidebar.select_slider(
