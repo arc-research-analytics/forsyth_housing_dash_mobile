@@ -580,6 +580,6 @@ else:
 im = Image.open('content/logo.png')
 st.write("")
 subcol1, subcol2, subcol3 = st.columns([1.4, 1, 1])
-subcol2.write(f"Powered by:")
-subcol2.image(im, width=80)
+st.write(f"Powered by:")
+st.image(im, width=80)
 
