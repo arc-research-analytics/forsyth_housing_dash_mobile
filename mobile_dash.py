@@ -66,11 +66,11 @@ years = st.sidebar.select_slider(
 dash_title1_color = '#FFFFFF'
 dash_title_font_size = '20'
 dash_title1_font_weight = '900'
-line_height1 = '20'
+line_height1 = '12'
 
 dash_title2_color = '#022B3A'
 dash_title2_font_weight = '700'
-line_height2 = '8'
+line_height2 = '5'
 
 # dashboard title
 st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px; display:in-line; text-align:center;'>Forsyth County Housing Trends</p>", unsafe_allow_html=True)
