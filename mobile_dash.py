@@ -578,8 +578,7 @@ else:
 
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
-st.write("")
 subcol1, subcol2, subcol3 = st.columns([1.4, 1, 1])
-st.write(f"Powered by:")
-st.image(im, width=80)
+subcol3.write(f"Powered by:")
+subcol3.image(im, width=80)
 
