@@ -22,7 +22,7 @@ hide_default_format = """
                 padding-bottom: 1px;
                 padding-left: 40px;
                 padding-right: 40px;
-                padding-top: 32px;
+                padding-top: 38px;
             }
             [data-testid="stSidebar"] {
                 padding-left: 18px;
