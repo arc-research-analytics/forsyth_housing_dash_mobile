@@ -236,7 +236,7 @@ custom_colors = [tuple(int(h.lstrip('#')[i:i+2], 16) for i in (0, 2, 4)) for h i
 map_lat_2D = 34.207054643497315
 map_lat_3D = 34.407054643497315
 map_long = -84.10535919531371
-map_height = 350
+map_height = 330
 map_zoom_2D = 8.8 # higher numeric value = 'zooming in'
 map_zoom_3D = 8.2 # higher numeric value = 'zooming in'
 
