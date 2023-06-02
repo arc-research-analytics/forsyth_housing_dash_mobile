@@ -59,7 +59,7 @@ years = st.sidebar.select_slider(
     2023
     ],
     value=(2021,2023),
-    help='Filter sales by transaction year.'
+    # help='Filter sales by transaction year.'
 )
 
 # dashboard title styling variables
@@ -89,7 +89,7 @@ year_built = st.sidebar.select_slider(
     'Year built:',
     options=['<2000', '2000-2010', '2011-2023'],
     value=('2000-2010', '2011-2023'),
-    help="Filter sales by the construction vintage of the home."
+    # help="Filter sales by the construction vintage of the home."
 )
 
 year_built_dict = {
@@ -103,7 +103,7 @@ geography_included = st.sidebar.radio(
     'Geography included:',
     ('Entire county','Sub-geography'),
     index=0,
-    help='Filter sales by location. Defaults to entire county. "Sub-geography" filter will allow multi-select of smaller groupings within the county.'
+    # help='Filter sales by location. Defaults to entire county. "Sub-geography" filter will allow multi-select of smaller groupings within the county.'
 )
 sub_geo = ""
 if geography_included == 'Sub-geography':
@@ -111,7 +111,8 @@ if geography_included == 'Sub-geography':
         'Select one or more regions:',
         ['Cumming', 'North Forsyth', 'West Forsyth', 'South Forsyth'],
         ['Cumming'],
-        help="Select one or more pre-defined groupings of Census tracts.")
+        # help="Select one or more pre-defined groupings of Census tracts."
+        )
 
 # Map options sidebar section
 st.sidebar.write("---")
@@ -121,14 +122,14 @@ map_view = st.sidebar.radio(
         ('2D', '3D'),
         index=0,
         horizontal=True,
-        help='Toggle 3D view for extruded polygons which show "height" based on the quantity of total sales in each Census tract subject to the filters chosen. Shift + click to change pitch and rotation of map. Darker Census tract shading corresponds to higher median sales price per SF.'
+        # help='Toggle 3D view for extruded polygons which show "height" based on the quantity of total sales in each Census tract subject to the filters chosen. Shift + click to change pitch and rotation of map. Darker Census tract shading corresponds to higher median sales price per SF.'
         )
 
 base_map = st.sidebar.selectbox(
     'Base map:',
     ('Streets', 'Satellite', 'Gray'),
     index=2,
-    help='Change underlying base map.'
+    # help='Change underlying base map.'
 )
 
 base_map_dict = {
@@ -526,7 +527,7 @@ else:
     st.markdown("<span style='color:#022B3A'>Census tract 'height' represents total sales; darker shading represents greater median sales price / SF.</span>", unsafe_allow_html=True)
 
 # chart
-st.plotly_chart(charter(), use_container_width=True, config = {'displayModeBar': False}, help='test')
+st.plotly_chart(charter(), use_container_width=True, config = {'displayModeBar': False})
 
 
 # kpi values
