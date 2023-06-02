@@ -66,11 +66,11 @@ years = st.sidebar.select_slider(
 dash_title1_color = '#FFFFFF'
 dash_title_font_size = '20'
 dash_title1_font_weight = '900'
-line_height1 = '12'
+line_height1 = '20'
 
 dash_title2_color = '#022B3A'
 dash_title2_font_weight = '700'
-line_height2 = '0'
+line_height2 = '8'
 
 # dashboard title
 st.markdown(f"<p style='color:{dash_title1_color}; font-size:{dash_title_font_size}px; font-weight:{dash_title1_font_weight}; line-height:{line_height1}px; display:in-line; text-align:center;'>Forsyth County Housing Trends</p>", unsafe_allow_html=True)
@@ -571,7 +571,7 @@ else:
 # map notes
 if map_view == '2D':
     expander = st.expander("Notes")
-    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts on map represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023 and is assumed to be accurate and reliable.</span>", unsafe_allow_html=True)
+    expander.markdown("<span style='color:#022B3A'> Darker shades of Census tracts on map represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023, and is assumed to be accurate and reliable.</span>", unsafe_allow_html=True)
 else:
     expander = st.expander("Notes")
     expander.markdown("<span style='color:#022B3A'>Census tract 'height' representative of total sales per tract. Darker shades of Census tracts on map represent higher sales prices per SF for the selected time period. Dashboard excludes non-qualified, non-market, and bulk transactions. Excludes transactions below $1,000 and homes smaller than 75 square feet. Data downloaded from Forsyth County public records on May 11, 2023 and is assumed to be accurate and reliable.</span>", unsafe_allow_html=True)
@@ -579,6 +579,6 @@ else:
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
 subcol1, subcol2, subcol3 = st.columns([1.4, 1, 1])
-subcol3.write(f"Powered by:")
-subcol3.image(im, width=80)
+subcol2.write(f"Powered by:")
+subcol2.image(im, width=80)
 
