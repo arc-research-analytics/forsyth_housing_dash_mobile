@@ -32,7 +32,7 @@ hide_default_format = """
             [data-testid="collapsedControl"] {
                 color: #FFFFFF;
                 background-color: #022B3A;
-                }
+                } 
             span[data-baseweb="tag"] {
                 background-color: #022B3A 
                 }
@@ -552,7 +552,6 @@ KPI_line_height = '25' # vertical spacing between the KPI label and value
 # first metric - "Total sales"
 st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Total home sales: <span style='color:{KPI_value_font_color};'>{total_sales}</span></p>", unsafe_allow_html=True)
 
-
 # second metric - "Median price"
 st.markdown(f"<p style='color:{KPI_label_font_color}; font-size:{KPI_font_size}px; font-weight:{KPI_font_weight}; line-height:{KPI_line_height}px; display:in-line; text-align:center;'>Median sale price: <span style='color:{KPI_value_font_color};'>{median_price}</span></p>", unsafe_allow_html=True)
 
@@ -580,7 +579,7 @@ else:
 # Draw ARC logo at the bottom of the page
 im = Image.open('content/logo.png')
 st.write("")
-# subcol1, subcol2, subcol3 = st.columns([1, 1, 1])
-st.write(f"Powered by:")
-st.image(im, width=100)
+subcol1, subcol2, subcol3 = st.columns([1.4, 1, 1])
+subcol2.write(f"Powered by:")
+subcol2.image(im, width=80)
 
