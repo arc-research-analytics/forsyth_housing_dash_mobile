@@ -138,9 +138,7 @@ base_map_dict = {
     'Gray':'light'
 }
 
-# create more space at the bottom of the sidebar for better scrolling
-time_stamp = datetime.datetime.now().date()
-
+# create more space at the bottom of the sidebar for better scrolling experience in mobile app
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
@@ -153,7 +151,7 @@ st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write("")
-st.sidebar.markdown(f"<p style='text-align:center;'>Updated {time_stamp}</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='text-align:center;'>ARC Research & Analytics Department</p>", unsafe_allow_html=True)
 
 # sidebar variables ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 @st.cache_data
