@@ -49,7 +49,7 @@ st.sidebar.markdown(f"<p style='text-align:center;color:#FFFFFF;font-style:itali
 
 # all the years available for selection
 years = st.sidebar.select_slider(
-    'Transaction year:',
+    'Transaction year',
     options=[
     2018,
     2019,
@@ -86,7 +86,7 @@ st.write("")
 
 # construction vintage
 year_built = st.sidebar.select_slider(
-    'Year built:',
+    'Year built',
     options=['<2000', '2000-2010', '2011-2023'],
     value=('2000-2010', '2011-2023'),
     # help="Filter sales by the construction vintage of the home."
@@ -100,7 +100,7 @@ year_built_dict = {
 
 # sub-geography slider
 geography_included = st.sidebar.radio(
-    'Geography included:',
+    'Geography included',
     ('Entire county','Sub-geography'),
     index=0,
     # help='Filter sales by location. Defaults to entire county. "Sub-geography" filter will allow multi-select of smaller groupings within the county.'
