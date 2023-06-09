@@ -118,7 +118,7 @@ if geography_included == 'Sub-geography':
 st.sidebar.write("---")
 st.sidebar.markdown(f"<p style='text-align:center; color:#FFFFFF; font-style:italic; line-height:2px'>Map options:</p>", unsafe_allow_html=True)
 map_view = st.sidebar.radio(
-        'Map view:',
+        'Map view',
         ('2D', '3D'),
         index=0,
         horizontal=True,
@@ -126,7 +126,7 @@ map_view = st.sidebar.radio(
         )
 
 base_map = st.sidebar.selectbox(
-    'Base map:',
+    'Base map',
     ('Streets', 'Satellite', 'Gray'),
     index=2,
     # help='Change underlying base map.'
